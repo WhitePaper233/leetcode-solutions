@@ -15,15 +15,13 @@ using int64 = int64_t;
 class Solution {
 public:
     string getSmallestString(string s) {
-        vector<string> possibleStrings { s };
         for (int i = 1; i < s.size(); ++i) {
-            if (toDigit(s[i]) % 2 == toDigit(s[i - 1]) % 2) {
-                string newStr { s };
-                swap(newStr[i], newStr[i - 1]);
-                possibleStrings.push_back(newStr);
+            if (s[i - 1] > s[i] && toDigit(s[i]) % 2 == toDigit(s[i - 1]) % 2) {
+                swap(s[i], s[i - 1]);
+                break;
             }
         }
-        return *min_element(possibleStrings.begin(), possibleStrings.end());
+        return s;
     }
 };
 // @lc code=end
